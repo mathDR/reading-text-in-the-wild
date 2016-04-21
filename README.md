@@ -25,4 +25,36 @@ This repository uses the following dependencies:
 
 This repository implements the models from the following paper:
 M. Jaderberg, K. Simpnyan, A. Vedaldi and A. Zisserman. "Synthetic Data and Artificial Neural Networks for 
-Natural Scene Text Recognition" 
+Natural Scene Text Recognition" Workshop on Deep Learning, NIPS, 2014. 
+[paper](http://www.robots.ox.ac.uk/~vgg/publications/2014/Jaderberg14c/jaderberg14c.pdf)
+
+It is made to be ran on an [INVIDIA Jetson TK1](http://www.nvidia.com/object/jetson-tk1-embedded-dev-kit.html) computer 
+(hence the restriction to the older version of Theano. The current Theano supports cuDNN v5 which requires 
+CUDA 7.0 and the Jetson only supports up to CUDA 6.5).
+
+-----------------
+## Datasets and Models
+The training data for the networks comes from the [MJSynth dataset](http://www.robots.ox.ac.uk/~vgg/data/text/) and the 
+models are extracted from the MATLAB models located at [models](http://www.robots.ox.ac.uk/~vgg/research/text/#sec-models)
+
+The weights from the MATLAB models are extracted for conversion to Keras via the files
+```python
+extract_dictnet_weights.py
+```
+for the DICT+2 model and
+```python
+extract_charnet_weights.py
+```
+for the CHAR+2 model.  These weights are dumped into numpy files to be read into the respective keras models.
+
+
+-----------------
+# Usage
+
+Currently the training files are not uploaded (still in progress), but to use the CHAR+2 model, cd to the CHAR2 folder 
+and run 
+```python
+use_charnet.py
+```
+
+Similary for the DICT+2 model.
