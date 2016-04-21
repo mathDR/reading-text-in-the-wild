@@ -3,7 +3,6 @@
 
 ------------------
 
-
 ## Installation
 
 This repository uses the following dependencies:
@@ -16,8 +15,14 @@ This repository uses the following dependencies:
 - Theano 0.8.2
     - [See installation instructions](http://deeplearning.net/software/theano/install.html#install).
 
-**Note**: You should use version 0.8.2 of Theano, it is available at (https://pypi.python.org/pypi/Theano/0.8.2)
-**Note**: You should use version 0.3.3 of Keras, it is available at (https://pypi.python.org/pypi/Keras/0.3.3)
+**Note**: You should use version 0.8.2 of Theano, it is available at [Theano-0.8.2](https://pypi.python.org/pypi/Theano/0.8.2)
+**Note**: You should use version 0.3.3 of Keras, it is available at [Keras-0.3.3](https://pypi.python.org/pypi/Keras/0.3.3)
 
 
+------------------
 
+## Background
+
+This repository implements the models from the following paper:
+M. Jaderberg, K. Simpnyan, A. Vedaldi and A. Zisserman. "Synthetic Data and Artificial Neural Networks for 
+Natural Scene Text Recognition" 
