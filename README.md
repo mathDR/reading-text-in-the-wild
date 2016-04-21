@@ -8,6 +8,7 @@
 This repository uses the following dependencies:
 
 - numpy, scipy
+- matplotlib, skimage (for preprocessing images)
 - HDF5 and h5py (optional, required if you use model saving/loading functions)
 - Optional but recommended if you use CNNs: cuDNN.
 - keras 0.3.3
