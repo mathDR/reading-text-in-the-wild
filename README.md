@@ -35,7 +35,7 @@ CUDA 7.0 and the Jetson only supports up to CUDA 6.5).
 
 -----------------
 ## Datasets and Models
-The training data for the networks comes from the [MJSynth dataset](http://www.robots.ox.ac.uk/~vgg/data/text/) and the 
+The training data for the networks comes from the [MJSynth dataset](http://www.robots.ox.ac.uk/~vgg/data/text/) and the
 models are extracted from the MATLAB models located at [models](http://www.robots.ox.ac.uk/~vgg/research/text/#sec-models)
 
 The weights from the MATLAB models are extracted for conversion to Keras via the files
@@ -46,8 +46,23 @@ for the DICT+2 model and
 ```python
 extract_charnet_weights.py
 ```
-for the CHAR+2 model.  These weights are dumped into numpy files to be read into the respective keras models.
-
+for the CHAR+2 model.  These weights are dumped into numpy files
+```python
+matlab_dictnet_weights.npz
+```
+and
+```python
+matlab_charnet_weights.npz
+```
+respectively.  Then, to build the respective keras models, run
+```python
+make_keras_dictnet_model.py
+```
+and
+```python
+make_keras_charnet_model.py
+```
+to produce the json architecture file and the hdf5 weights file for use in the respective model.
 
 -----------------
 # Usage
