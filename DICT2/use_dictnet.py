@@ -5,12 +5,14 @@ Run on GPU: THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python use_char
 from __future__ import print_function
 from numpy import argmax, array, dot, float32, mean, std, zeros
 
-class CharNet():
+class DictNet():
     def __init__(self, architecture_file=None, weight_file=None, optimizer=None):
-        # Generate mapping for softmax layer to characters
-        output_str = '0123456789abcdefghijklmnopqrstuvwxyz '
-        self.output = [x for x in output_str]
-        self.L = len(self.output)
+        # Build mapping from output layer to element of lexicon
+        import scipy.io as sio
+        lex_file = 'LOCATION OF lex.mat from http://www.robots.ox.ac.uk/~vgg/research/text/#sec-models NIPS
+                 DLW 2014 models'
+        mat_contents = sio.loadmat(lex_file)
+        self.output_word = mat_contents['lexicon'][0,:]
 
         # Load model and saved weights
         from keras.models import model_from_json
@@ -45,12 +47,8 @@ class CharNet():
         img = self._preprocess(img)
         xtest = zeros((1,1,32,100))
         xtest[0,0,:,:] = img
-        z = self.model.predict(xtest,verbose=0)[0,:]
-        output_text = []
-        for i in range(23):
-            ind = argmax(z[i*self.L:(i+1)*self.L])
-            output_text.extend(self.output[ind])
-        return ''.join(output_text).rstrip(' ')
+        z = model.predict_classes(xtest,verbose=0)[0]
+        return self.output_word[z][0]
 
 
 if __name__ == '__main__':
@@ -59,7 +57,7 @@ if __name__ == '__main__':
     filename = 'Chevron.jpg'
     #filename = 'CondoleezzaRice.jpg'
     #filename = 'CMA_CGM.jpg'
-    cnn_model = CharNet()
+    cnn_model = DictNet()
 
     img = mpimg.imread(filename)        
     print (cnn_model.classify_image(img))
