@@ -21,7 +21,6 @@ This repository uses the following dependencies:
 
 **Note**: You should use version 0.3.3 of Keras, it is available at [Keras-0.3.3](https://pypi.python.org/pypi/Keras/0.3.3)
 
-
 ------------------
 
 ## Background
@@ -34,6 +33,47 @@ Natural Scene Text Recognition" Workshop on Deep Learning, NIPS, 2014.
 It is made to be ran on an [INVIDIA Jetson TK1](http://www.nvidia.com/object/jetson-tk1-embedded-dev-kit.html) computer 
 (hence the restriction to the older version of Theano. The current Theano supports cuDNN v5 which requires 
 CUDA 7.0 and the Jetson only supports up to CUDA 6.5).
+
+------------------
+## Update Keras
+
+The models from the paper utilizes a deep neural network consisting of eight weight layers:  five convolutioanl layers 
+and three fully connected layers.  The convolutional layers have the following {filter_size,number of filters}: {5,64}, 
+{5,128}, {3,256}, {3,512}, {3,512}.  The first two fully connected layers each have 4096 units and the final layer has
+either 812 units (charnet) or 88172 units (dictnet).  The final classification layer is followed by a softmax normalization
+layer.  Rectified linear non-linarities follow every hidden layer and all but the fourth convolutional layers are followed
+by 2x2 max pooling.  The inputs to the convolutional layers are zero padded to preserve dimensionality (border_mode=same 
+in Keras).  The fixed size input to the model is a 32x100 greyscale image with is zero-centered by subtracting the mean
+and normalized by dividing by the standard deviation.
+
+The original model was written in Caffe and MatConvNet which treat max pooling different than Theano.  The cascading
+pooling layers lead to a layer with a shape having size 8x25x512.  Caffe applied max pooling to this layer results in 
+size 4x13x512, but Keras/Theano pooling results in a layer of size 4x12x512.  This is due to Theano NOT pooling over the
+last column in the filter.
+
+Therefore, a custom zero padding function was written to solve this issue.  The filter of size 4x25x512 is zero padded to 
+make it 4x26x512 (with a column of zeros) which then can be max pooled to the desired shape.
+
+The new class is denoted 
+```python
+CustomZeroPadding2D()
+```
+and should be added to 
+```python
+keras/layers/convolutional.py
+```
+The file is located in the KERAS_TWEAKS directory and should overwrite the respective keras file.
+
+The new function for Theano is denoted
+```python
+custom_spatial_2d_padding()
+```
+and should be added to 
+```python
+keras/backend/theano_backend.py
+```
+The file is also located in the KERAS_TWEAKS directory and should overwrite the respective keras file.
+
 
 -----------------
 ## Datasets and Models
