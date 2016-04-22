@@ -1,5 +1,6 @@
 # reading-text-in-the-wild
-# A Keras/Theano implementation of "Reading Text in the Wild with Convolutional Neural Networks" by M Jaderberg et.al.
+# A Keras/Theano implementation of "Synthetic Data and Artificial Neural Networks for Natural Scene Text Recognition" 
+by M Jaderberg et.al.
 
 ------------------
 
@@ -74,4 +75,7 @@ and run
 use_charnet.py
 ```
 
-Similary for the DICT+2 model.
+Similary for the DICT+2 model, go to the DICT2 folder and run 
+```python
+use_dictnet.py
+```
