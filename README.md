@@ -14,10 +14,10 @@ This repository uses the following dependencies:
 - Optional but recommended if you use CNNs: cuDNN.
 - keras 0.3.3
     - [See installation instructions](https://github.com/fchollet/keras/tree/master)
-- Theano 0.8.2
+- Theano 0.8.1
     - [See installation instructions](http://deeplearning.net/software/theano/install.html#install).
 
-**Note**: You should use version 0.8.2 of Theano, it is available at [Theano-0.8.2](https://pypi.python.org/pypi/Theano/0.8.2)
+**Note**: You should use version 0.8.1 of Theano, it is available at [Theano-0.8.1](https://pypi.python.org/pypi/Theano/0.8.1)
 
 **Note**: You should use version 0.3.3 of Keras, it is available at [Keras-0.3.3](https://pypi.python.org/pypi/Keras/0.3.3)
 
