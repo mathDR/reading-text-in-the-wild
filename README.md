@@ -40,7 +40,8 @@ CUDA 7.0 and the Jetson only supports up to CUDA 6.5).
 The models from the paper utilizes a deep neural network consisting of eight weight layers:  five convolutioanl layers 
 and three fully connected layers.  The convolutional layers have the following {filter_size,number of filters}: {5,64}, 
 {5,128}, {3,256}, {3,512}, {3,512}.  The first two fully connected layers each have 4096 units and the final layer has
-either 812 units (charnet) or 88172 units (dictnet).  The final classification layer is followed by a softmax normalization
+either 851 units (charnet: max length of word = 23 and each element is of ['0,...,9,a,...,z,' '] so 23*37) or 88172 units 
+(dictnet: the number of words in the dictionary).  The final classification layer is followed by a softmax normalization
 layer.  Rectified linear non-linarities follow every hidden layer and all but the fourth convolutional layers are followed
 by 2x2 max pooling.  The inputs to the convolutional layers are zero padded to preserve dimensionality (border_mode=same 
 in Keras).  The fixed size input to the model is a 32x100 greyscale image with is zero-centered by subtracting the mean
