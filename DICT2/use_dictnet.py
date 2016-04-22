@@ -54,9 +54,9 @@ class DictNet():
 if __name__ == '__main__':
     import matplotlib.image as mpimg
 
-    filename = 'Chevron.jpg'
-    #filename = 'CondoleezzaRice.jpg'
-    #filename = 'CMA_CGM.jpg'
+    filename = '../IMAGES/Chevron.jpg'
+    #filename = '../IMAGES/CondoleezzaRice.jpg'
+    #filename = '../IMAGES/CMA_CGM.jpg'
     cnn_model = DictNet()
 
     img = mpimg.imread(filename)        
