@@ -34,14 +34,13 @@ if __name__ == '__main__':
     model.compile(loss='binary_crossentropy', optimizer=sgd)
 
     # Load data
-
-    # Train model
     datagen = CharnetSampleGenerator()
 
+    # Train model
     early_stopping = EarlyStopping(monitor='val_loss', patience=2)
     model.fit_generator(datagen.flow(batch_size=batch_size), nb_epoch=nb_epoch, 
-                        samples_per_epoch = 10000,verbose=1,callbacks=[early_stopping])
-    assert False
+                        samples_per_epoch = 10000, verbose=1,callbacks=[early_stopping])
+
     json_string = model.to_json()
     open('charnet_trained_architecture.json', 'w').write(json_string)
     model.save_weights('charnet_trained_weights.h5')

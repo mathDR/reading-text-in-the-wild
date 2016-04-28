@@ -38,7 +38,7 @@ class CharNet():
             img = self._rgb2gray(img)
         img = resize(img, (32,100), order=1, preserve_range=True)
         img = array(img,dtype=float32) # convert to single precision
-        img = (img - mean(img)) / ( (std(img) + 0.0001) / 128.0 )
+        img = (img - mean(img)) / ( (std(img) + 0.0001) )
         return img
 
     def classify_image(self,img):    
