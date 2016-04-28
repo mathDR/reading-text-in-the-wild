@@ -108,9 +108,10 @@ make_keras_charnet_model.py
 to produce the json architecture file and the hdf5 weights file for use in the respective model.
 
 -----------------
-# Usage
+## Usage
 
-Currently the training files are not uploaded (still in progress), but to use the CHAR+2 model, cd to the CHAR2 folder 
+# Run the Models
+To use the CHAR+2 model, cd to the CHAR2 folder 
 and run 
 ```python
 use_charnet.py
@@ -120,3 +121,18 @@ Similary for the DICT+2 model, go to the DICT2 folder and run
 ```python
 use_dictnet.py
 ```
+
+# Train the Models
+
+Training is done differently for the two models.  For the CHAR+2 model, the full model is trained over the 
+SYNTH dataset.  The number of samples per epoch (set at 10000) could be increased depending upon compute resources.
+The SYNTH dataset has close to nine million images available for training.
+
+
+The DICT+2 model is trained via *incremental learning* (as seen in T.Xiao, et.al. "Error-Driven Incremental Learning
+in Deep Convolutional Nerual Network for Large-Scale Image Classification"  In ACM MM, pages
+177–186. ACM, 2014).
+
+Both models are trained via back-propagation over either binary crossentropy with dropout on the fully connected layers
+(charnet) or categorical crossentropy with dropout on the fully connected layers (dictnet). Optimization uses 
+stochastic gradient descent (SGD).
