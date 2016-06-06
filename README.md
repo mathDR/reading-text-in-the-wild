@@ -130,9 +130,18 @@ The SYNTH dataset has close to nine million images available for training.
 
 
 The DICT+2 model is trained via *incremental learning* (as seen in T.Xiao, et.al. "Error-Driven Incremental Learning
-in Deep Convolutional Nerual Network for Large-Scale Image Classification"  In ACM MM, pages
+in Deep Convolutional Neural Network for Large-Scale Image Classification"  In ACM MM, pages
 177–186. ACM, 2014).
 
 Both models are trained via back-propagation over either binary crossentropy with dropout on the fully connected layers
 (charnet) or categorical crossentropy with dropout on the fully connected layers (dictnet). Optimization uses 
 stochastic gradient descent (SGD).
+
+# TO DO
+As this model is going to be ran on an NVIDIA Jetson TK1, (currently) the trained CharNet network 
+(~450 Million parameters!) is too big to fit on the platform.  Therefore, some type of compression is needed
+to scale the network.
+
+Prelimiary work from the paper: Reducing the Model Order of Deep Neural Networks Using Information Theory, 
+by M. Tu, V. Berisha, Y. Cao and J-s Seo http://arxiv.org/pdf/1605.04859v1.pdf is being studied.
+
