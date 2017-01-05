@@ -55,10 +55,10 @@ class CharNet():
 
 if __name__ == '__main__':
     import matplotlib.image as mpimg
-
-    filename = 'Chevron.jpg'
-    #filename = 'CondoleezzaRice.jpg'
-    #filename = 'CMA_CGM.jpg'
+    dir_prefix = '../IMAGES/'
+    filename = dir_prefix + 'Chevron.jpg'
+    #filename = dir_prefix + 'CondoleezzaRice.jpg'
+    #filename = dir_prefix + 'CMA_CGM.jpg'
     cnn_model = CharNet()
 
     img = mpimg.imread(filename)        
