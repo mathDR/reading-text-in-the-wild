@@ -75,7 +75,8 @@ keras/backend/theano_backend.py
 ```
 The file is also located in the KERAS_TWEAKS directory and should overwrite the respective keras file.
 
-
+NOTE:  Keras now uses Google TensorFlow as the backend for default. You need to set Theano as the 
+backend.  To do so, follow the instructions [here](https://keras.io/backend/).
 -----------------
 ## Datasets and Models
 The training data for the networks comes from the [MJSynth dataset](http://www.robots.ox.ac.uk/~vgg/data/text/) and the
